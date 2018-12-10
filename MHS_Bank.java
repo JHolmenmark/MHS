@@ -12,6 +12,12 @@ public class MHS_Bank {
     public MHS_Bank(){
         
     }
+	public String getbankAccount(){
+        return this.bankAccount;
+    }
+    public String trim(int length){
+        return this.bankAccount.substring(0, length);
+    }
 	public String getBankName(){
         String bankName = "";
         String clearanceNr; 
