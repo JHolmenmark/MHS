@@ -4,7 +4,7 @@ public class MHS_Bank {
   public static ArrayList<MHS_BankAccount> bankList = new ArrayList<MHS_BankAccount>();
 
   public boolean addAccount(String bankName, String accountNr, double balance){
-    if(accountGoodFormat(bankName, accountNumber)){
+    if(accountGoodFormat(bankName, accountNr) && !accountExists(accountNr)) {
       MHS_BankAccount accnew = new MHS_BankAccount();
       accnew.setBankName(bankName);
       accnew.setAccountNumber(accountNr);
@@ -17,46 +17,62 @@ public class MHS_Bank {
   }
 
   public boolean accountGoodFormat(String bankName, String accountNumber) {
+    boolean good = false;
     switch(bankName){
       case "Nordea":
         if(accountNumber.substring(0, 4).contains("1234")) {
-          return true;
+          good = true;
         }
         break;
       case "Handelsbanken":
         if(accountNumber.substring(0, 4).contains("1423")) {
-          return true;
+          good = true;
         }
         break;
       case "SEB":
         if(accountNumber.substring(0, 4).contains("5531")) {
-          return true;
+          good = true;
         }
+        break;
       case "Swedbank":
         if(accountNumber.substring(0, 5).contains("99156")
         && accountNumber.substring(10).contains("9")) {
-          return true;
+          good = true;
         }
+        break;
       default:
-        return false;
+        good = false;
         break;
     }
+    return good;
   }
 
-  public String makePurchase(String accountNumber, double ticketPrice) {
+  public boolean accountExists(String accountNumber) {
+    boolean found = false;
     for(int i=0; i < bankList.size(); i++) {
-      if((bankList.get(i).getAccountNumber() == accountNumber) {
-        if(bankList.get(i).purchase(ticketPrice) {
-          return banklist.get(i).getBankName();
-        } else {
-          return "Insufficient Funds"
-        }
-      } else {
-        return "Wrong AccountNr";
+      if(bankList.get(i).getAccountNumber().equals(accountNumber)) {
+        found = true;
       }
     }
+    return found;
+  }
+  public String makePurchase(String accountNumber, double ticketPrice) {
+    String result = "";
+    for(int i=0; i < bankList.size(); i++) {
+      if(bankList.get(i).getAccountNumber().equals(accountNumber)) {
+        if(bankList.get(i).purchase(ticketPrice)) {
+          result = bankList.get(i).getBankName();
+        } else {
+          result = "Insufficient Funds";
+        }
+      } else {
+        result = "Wrong AccountNr";
+      }
+    }
+    return result;
   }
 
   public ArrayList<MHS_BankAccount> getBankList(){
     return bankList;
   }
+}
