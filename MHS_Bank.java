@@ -43,6 +43,20 @@ public class MHS_Bank {
     }
   }
 
+  public String makePurchase(String accountNumber, double ticketPrice) {
+    for(int i=0; i < bankList.size(); i++) {
+      if((bankList.get(i).getAccountNumber() == accountNumber) {
+        if(bankList.get(i).purchase(ticketPrice) {
+          return banklist.get(i).getBankName();
+        } else {
+          return "Insufficient Funds"
+        }
+      } else {
+        return "Wrong AccountNr";
+      }
+    }
+  }
+
   public ArrayList<MHS_BankAccount> getBankList(){
     return bankList;
   }
