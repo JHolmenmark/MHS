@@ -12,3 +12,22 @@ public class MHS_Bank {
     public MHS_Bank(){
         
     }
+	public String getBankName(){
+        String bankName = "";
+        String clearanceNr; 
+        clearanceNr = trim(4);
+        for (int i = 0; i < 4; i++){
+           
+            if (clearanceNr.equals(banks[i][0])){
+                bankName= banks[i][1];
+            }
+        }
+        clearanceNr = trim(5);
+        for (int i = 0; i < 4; i++){
+            if (clearanceNr.equals(banks[i][0])){
+               bankName = banks[i][1]; 
+            }
+        }
+        return bankName;
+    }
+}
