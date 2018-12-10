@@ -12,3 +12,18 @@ public class MHS_BankAccount {
     public MHS_BankAccount(){
         this.accBalance = 0.0;
     }
+	public double getBalance(double accNr){
+         for (int i = 0; i < 4; i++){
+            if (accNr == bankInfo[i][0]){
+               this.accBalance= bankInfo[i][1]; 
+            }
+        }
+         return this.accBalance;
+     }
+  //Set-Methods
+    
+    public void setBalance(double currentBalance){
+        
+      this.accBalance = currentBalance;
+    }
+}
