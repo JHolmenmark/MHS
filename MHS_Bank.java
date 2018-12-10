@@ -12,6 +12,17 @@ public class MHS_Bank {
     public MHS_Bank(){
         
     }
+	  public boolean requestHandler(String accountNo, double price){
+        this.bankAccount = accountNo;
+        this.balance= MHSbank.getBalance(Double.parseDouble(accountNo));
+        if(price < this.balance){
+           this.balance = this.balance - price;
+           MHSbank.setBalance(this.balance);
+            System.out.println("Current balance: "+this.balance);
+           return true;
+        } 
+       return false;
+    }
 	public String getbankAccount(){
         return this.bankAccount;
     }
